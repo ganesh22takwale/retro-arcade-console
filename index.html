@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Web Gaming Console Arcade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header with Sponsored Space -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="console-title">◆ CYBER ARCADE ◆</h1>
+            <div class="sponsored-header">
+                <div class="ad-placeholder" id="ad-header">
+                    <!-- Google AdSense Code Block Here -->
+                    <p class="ad-text">Sponsored Space</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Left Sidebar with Sponsored Space -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <h3 class="sidebar-title">⚙ CONTROLS</h3>
+                <div class="controls-info">
+                    <p><strong>Arrow Keys / WASD</strong> - Movement</p>
+                    <p><strong>Space / Enter</strong> - Action</p>
+                    <p><strong>M</strong> - Mute Audio</p>
+                    <p><strong>P</strong> - Pause</p>
+                </div>
+                <hr class="divider">
+                <div class="sponsored-sidebar">
+                    <div class="ad-placeholder" id="ad-sidebar">
+                        <!-- Google AdSense Code Block Here -->
+                        <p class="ad-text">Sponsored Space</p>
+                    </div>
+                </div>
+                <hr class="divider">
+                <div class="stats">
+                    <h3 class="stats-title">📊 STATS</h3>
+                    <div class="stat-item">
+                        <span>High Score:</span>
+                        <span id="high-score" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Games Played:</span>
+                        <span id="games-played" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Time Played:</span>
+                        <span id="time-played" class="stat-value">0h</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Central Console Screen -->
+        <section class="console-wrapper">
+            <!-- Console Frame -->
+            <div class="console-frame">
+                <!-- Screen Display Area -->
+                <div class="screen-area">
+                    <div class="screen-content">
+                        <!-- Game View Container -->
+                        <div class="game-view" id="game-view" style="display:none;">
+                            <!-- Game Canvas / DOM Elements Load Here -->
+                        </div>
+
+                        <!-- Game Menu Grid (Default View) -->
+                        <div class="game-menu" id="game-menu">
+                            <h2 class="menu-title">SELECT YOUR GAME</h2>
+                            <div class="game-grid">
+                                <div class="game-card" data-game="snake">
+                                    <div class="card-glow"></div>
+                                    <div class="card-content">
+                                        <h3>🐍 CYBER SNAKE</h3>
+                                        <p class="card-description">Classic Snake meets Cyberpunk</p>
+                                        <button class="play-btn">PLAY</button>
+                                    </div>
+                                </div>
+
+                                <div class="game-card" data-game="space-invaders">
+                                    <div class="card-glow"></div>
+                                    <div class="card-content">
+                                        <h3>👾 SPACE INVADERS</h3>
+                                        <p class="card-description">Retro shooting action</p>
+                                        <button class="play-btn">PLAY</button>
+                                    </div>
+                                </div>
+
+                                <div class="game-card" data-game="brick-breaker">
+                                    <div class="card-glow"></div>
+                                    <div class="card-content">
+                                        <h3>🧱 BRICK BREAKER</h3>
+                                        <p class="card-description">Timeless arcade classic</p>
+                                        <button class="play-btn">PLAY</button>
+                                    </div>
+                                </div>
+
+                                <div class="game-card" data-game="coming-soon">
+                                    <div class="card-glow"></div>
+                                    <div class="card-content">
+                                        <h3>🎮 COMING SOON</h3>
+                                        <p class="card-description">More retro titles incoming</p>
+                                        <button class="play-btn" disabled>LOCKED</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Console Controls (D-Pad & Buttons) -->
+                <div class="console-controls">
+                    <!-- D-Pad -->
+                    <div class="dpad-section">
+                        <div class="dpad">
+                            <button class="dpad-btn dpad-up" id="dpad-up" aria-label="Up"></button>
+                            <button class="dpad-btn dpad-left" id="dpad-left" aria-label="Left"></button>
+                            <button class="dpad-btn dpad-center"></button>
+                            <button class="dpad-btn dpad-right" id="dpad-right" aria-label="Right"></button>
+                            <button class="dpad-btn dpad-down" id="dpad-down" aria-label="Down"></button>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn btn-yellow" id="btn-y" aria-label="Yellow Button"></button>
+                        <button class="btn btn-blue" id="btn-b" aria-label="Blue Button"></button>
+                        <button class="btn btn-red" id="btn-a" aria-label="Red Button"></button>
+                        <button class="btn btn-green" id="btn-x" aria-label="Green Button"></button>
+                    </div>
+
+                    <!-- Center Buttons -->
+                    <div class="center-buttons">
+                        <button class="center-btn" id="btn-select">SELECT</button>
+                        <button class="center-btn" id="btn-start">START</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Info Panel -->
+        <aside class="info-panel">
+            <div class="info-content">
+                <h3 class="info-title">🎯 CURRENT GAME</h3>
+                <div class="current-game-info">
+                    <p id="current-game-name">No Game Selected</p>
+                    <p id="current-game-score" class="score-display">Score: 0</p>
+                </div>
+                <hr class="divider">
+                <h3 class="info-title">📱 STATUS</h3>
+                <div class="status-display">
+                    <p id="game-status" class="status-text">READY</p>
+                    <div class="status-indicator"></div>
+                </div>
+                <hr class="divider">
+                <button class="btn-secondary" id="btn-back-menu">← BACK TO MENU</button>
+                <button class="btn-secondary" id="btn-fullscreen">⛶ FULLSCREEN</button>
+                <button class="btn-secondary" id="btn-settings">⚙ SETTINGS</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Cyber Arcade | Built with ❤️ for Retro Gaming Enthusiasts</p>
+        <p class="footer-links">
+            <a href="#" onclick="return false;">Privacy</a> | 
+            <a href="#" onclick="return false;">Terms</a> | 
+            <a href="#" onclick="return false;">Contact</a>
+        </p>
+    </footer>
+
+    <!-- Game Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
