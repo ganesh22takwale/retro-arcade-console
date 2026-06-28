@@ -3,179 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Web Gaming Console Arcade</title>
-    <link rel="stylesheet" href="style.css">
+    <title>GRT Arcade OS - The Future of Browser Gaming</title>
+    
+    <meta name="description" content="Launch into GRT Arcade OS, a premium AAA web gaming platform. Experience low-latency modular arcade games with a futuristic, console-grade dashboard interface.">
+    <meta name="keywords" content="browser games, gaming console, web arcade, html5 games, next-gen gaming, pwa games">
+    <meta name="author" content="Global Reliability Technology">
+    <link rel="canonical" href="https://arcade.grt.global">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arcade.grt.global">
+    <meta property="og:title" content="GRT Arcade OS - The Future of Browser Gaming">
+    <meta property="og:description" content="Immersive, low-latency, next-generation browser gaming platform featuring premium UI/UX inspired by AAA console ecosystems.">
+    <meta property="og:image" content="assets/images/og-cyber-dashboard.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GRT Arcade OS">
+    <meta name="twitter:description" content="Experience a next-gen browser gaming operating system with high-performance modular HTML5 engines.">
+    <meta name="twitter:image" content="assets/images/og-cyber-dashboard.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script>
 </head>
-<body>
-    <!-- Header with Sponsored Space -->
-    <header class="header">
-        <div class="header-content">
-            <h1 class="console-title">◆ CYBER ARCADE ◆</h1>
-            <div class="sponsored-header">
-                <div class="ad-placeholder" id="ad-header">
-                    <!-- Google AdSense Code Block Here -->
-                    <p class="ad-text">Sponsored Space</p>
-                </div>
+<body class="os-loading">
+
+    <canvas id="ambient-matrix-canvas" class="background-canvas"></canvas>
+    <div class="scanline-overlay"></div>
+    <div class="noise-overlay"></div>
+
+    <div id="boot-sequence-container" class="boot-screen">
+        <div class="boot-terminal-wrapper">
+            <div class="boot-brand-logo">
+                <span class="logo-accent-bracket">[</span>
+                <span class="logo-core-text">GRT ARCADE OS</span>
+                <span class="logo-accent-bracket">]</span>
+            </div>
+            <div class="boot-status-subsystem">
+                <div class="terminal-line" data-delay="300">> INITIALIZING GRAPHICS SUB-ENGINE... <span class="status-ok">[OK]</span></div>
+                <div class="terminal-line" data-delay="700">> MOUNTING CORE AUDIO MATRIX... <span class="status-ok">[OK]</span></div>
+                <div class="terminal-line" data-delay="1100">> SYNCING LEADERBOARDS &amp; REWARDS ENGINE... <span class="status-ok">[OK]</span></div>
+                <div class="terminal-line" data-delay="1400">> FETCHING MODULAR GAME ARCHITECTURE... <span class="status-ok">[OK]</span></div>
+                <div class="terminal-line progress-line" data-delay="1800">> ALL DEPLOYMENTS COLD-STARTED. BOOTING SHELL...</div>
+            </div>
+            <div class="boot-progress-bar-container">
+                <div class="boot-progress-bar-fill"></div>
             </div>
         </div>
-    </header>
+    </div>
 
-    <main class="main-container">
-        <!-- Left Sidebar with Sponsored Space -->
-        <aside class="sidebar">
-            <div class="sidebar-content">
-                <h3 class="sidebar-title">⚙ CONTROLS</h3>
-                <div class="controls-info">
-                    <p><strong>Arrow Keys / WASD</strong> - Movement</p>
-                    <p><strong>Space / Enter</strong> - Action</p>
-                    <p><strong>M</strong> - Mute Audio</p>
-                    <p><strong>P</strong> - Pause</p>
+    <div id="core-dashboard-wrapper" class="dashboard-root hidden">
+        
+        <header class="system-hud-bar">
+            <div class="hud-brand-block">
+                <span class="hud-logo">GRT</span>
+                <span class="hud-divider">|</span>
+                <span class="hud-tagline">ARCADE OS v1.0.0</span>
+            </div>
+            <nav class="hud-navigation-tabs">
+                <button class="hud-tab-btn active" data-target="dashboard-home">DASHBOARD</button>
+                <button class="hud-tab-btn" data-target="dashboard-library">GAMES LIBRARY</button>
+                <button class="hud-tab-btn" data-target="dashboard-leaderboards">LEADERBOARDS</button>
+            </nav>
+            <div class="hud-status-widgets">
+                <div class="system-audio-control">
+                    <button id="global-mute-toggle" class="hud-widget-icon" aria-label="Toggle Audio System">
+                        <span class="audio-icon-visual">🔊</span>
+                    </button>
                 </div>
-                <hr class="divider">
-                <div class="sponsored-sidebar">
-                    <div class="ad-placeholder" id="ad-sidebar">
-                        <!-- Google AdSense Code Block Here -->
-                        <p class="ad-text">Sponsored Space</p>
-                    </div>
-                </div>
-                <hr class="divider">
-                <div class="stats">
-                    <h3 class="stats-title">📊 STATS</h3>
-                    <div class="stat-item">
-                        <span>High Score:</span>
-                        <span id="high-score" class="stat-value">0</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>Games Played:</span>
-                        <span id="games-played" class="stat-value">0</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>Time Played:</span>
-                        <span id="time-played" class="stat-value">0h</span>
-                    </div>
+                <div class="player-profile-pill">
+                    <div class="profile-status-indicator"></div>
+                    <span class="player-username">PLAYER_ONE</span>
                 </div>
             </div>
-        </aside>
+        </header>
 
-        <!-- Central Console Screen -->
-        <section class="console-wrapper">
-            <!-- Console Frame -->
-            <div class="console-frame">
-                <!-- Screen Display Area -->
-                <div class="screen-area">
-                    <div class="screen-content">
-                        <!-- Game View Container -->
-                        <div class="game-view" id="game-view" style="display:none;">
-                            <!-- Game Canvas / DOM Elements Load Here -->
+        <main class="dashboard-viewport">
+            
+            <section id="dashboard-home" class="viewport-section active-section">
+                <div class="hero-featured-stage">
+                    <div class="hero-content-cluster">
+                        <span class="hero-badge">FEATURED EXPERIENCE</span>
+                        <h1 class="hero-title-main">NEON VELOCITY</h1>
+                        <p class="hero-description-text">Experience retro-futuristic arcade dynamics combined with deterministic particle simulations. Achieve hyper-speeds on the global canvas matrix.</p>
+                        <div class="hero-action-row">
+                            <button class="btn-primary-neon action-launch-game" data-game="space-shooter">LAUNCH CORE INTERFACE</button>
+                            <button class="btn-secondary-glass">VIEW INTEL</button>
                         </div>
+                    </div>
+                    <div class="hero-ambient-glow-source"></div>
+                </div>
 
-                        <!-- Game Menu Grid (Default View) -->
-                        <div class="game-menu" id="game-menu">
-                            <h2 class="menu-title">SELECT YOUR GAME</h2>
-                            <div class="game-grid">
-                                <div class="game-card" data-game="snake">
-                                    <div class="card-glow"></div>
-                                    <div class="card-content">
-                                        <h3>🐍 CYBER SNAKE</h3>
-                                        <p class="card-description">Classic Snake meets Cyberpunk</p>
-                                        <button class="play-btn">PLAY</button>
+                <div class="dashboard-sub-grid">
+                    
+                    <div class="primary-showcase-column">
+                        <h2 class="section-title-header">INSTANT DISPATCH INTERFACES</h2>
+                        <div class="game-cards-flex-matrix">
+                            
+                            <article class="premium-game-card" data-game="space-shooter">
+                                <div class="card-glass-body">
+                                    <div class="card-visual-frame" style="background: linear-gradient(135deg, #0d1117, #1f1a3a);">
+                                        <div class="card-dynamic-neon-glow"></div>
+                                        <div class="card-badge-row">
+                                            <span class="card-pill genre">ACTION</span>
+                                            <span class="card-pill active-players">⚡ 1.2K ONLINE</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-metadata-cluster">
+                                        <h3 class="card-game-title">SPACE SHOOTER</h3>
+                                        <div class="card-metrics-row">
+                                            <span class="metric-item">⏱ 5m Play</span>
+                                            <span class="metric-item score-rating">★ 4.9</span>
+                                        </div>
+                                        <button class="card-execution-btn">LAUNCH</button>
                                     </div>
                                 </div>
+                            </article>
 
-                                <div class="game-card" data-game="space-invaders">
-                                    <div class="card-glow"></div>
-                                    <div class="card-content">
-                                        <h3>👾 SPACE INVADERS</h3>
-                                        <p class="card-description">Retro shooting action</p>
-                                        <button class="play-btn">PLAY</button>
+                            <article class="premium-game-card" data-game="tetris">
+                                <div class="card-glass-body">
+                                    <div class="card-visual-frame" style="background: linear-gradient(135deg, #0a0f1d, #251225);">
+                                        <div class="card-dynamic-neon-glow"></div>
+                                        <div class="card-badge-row">
+                                            <span class="card-pill genre">PUZZLE</span>
+                                            <span class="card-pill active-players">⚡ 842 ONLINE</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-metadata-cluster">
+                                        <h3 class="card-game-title">CYBER TETRIS</h3>
+                                        <div class="card-metrics-row">
+                                            <span class="metric-item">⏱ 10m Play</span>
+                                            <span class="metric-item score-rating">★ 4.8</span>
+                                        </div>
+                                        <button class="card-execution-btn">LAUNCH</button>
                                     </div>
                                 </div>
+                            </article>
 
-                                <div class="game-card" data-game="brick-breaker">
-                                    <div class="card-glow"></div>
-                                    <div class="card-content">
-                                        <h3>🧱 BRICK BREAKER</h3>
-                                        <p class="card-description">Timeless arcade classic</p>
-                                        <button class="play-btn">PLAY</button>
-                                    </div>
+                        </div>
+                    </div>
+
+                    <aside class="sidebar-telemetry-column">
+                        <div class="telemetry-widget glass-panel">
+                            <h3 class="widget-header">GLOBAL TELEMETRY</h3>
+                            <div class="leaderboard-ranking-stack">
+                                <div class="leaderboard-entry">
+                                    <span class="rank-pos">01</span>
+                                    <span class="player-id">A_V_A_L_O_N</span>
+                                    <span class="player-score">99,420</span>
                                 </div>
-
-                                <div class="game-card" data-game="coming-soon">
-                                    <div class="card-glow"></div>
-                                    <div class="card-content">
-                                        <h3>🎮 COMING SOON</h3>
-                                        <p class="card-description">More retro titles incoming</p>
-                                        <button class="play-btn" disabled>LOCKED</button>
-                                    </div>
+                                <div class="leaderboard-entry">
+                                    <span class="rank-pos">02</span>
+                                    <span class="player-id">N_E_O_N_X</span>
+                                    <span class="player-score">87,110</span>
+                                </div>
+                                <div class="leaderboard-entry">
+                                    <span class="rank-pos">03</span>
+                                    <span class="player-id">G_R_T_B_O_T</span>
+                                    <span class="player-score">76,000</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Console Controls (D-Pad & Buttons) -->
-                <div class="console-controls">
-                    <!-- D-Pad -->
-                    <div class="dpad-section">
-                        <div class="dpad">
-                            <button class="dpad-btn dpad-up" id="dpad-up" aria-label="Up"></button>
-                            <button class="dpad-btn dpad-left" id="dpad-left" aria-label="Left"></button>
-                            <button class="dpad-btn dpad-center"></button>
-                            <button class="dpad-btn dpad-right" id="dpad-right" aria-label="Right"></button>
-                            <button class="dpad-btn dpad-down" id="dpad-down" aria-label="Down"></button>
+                        <div class="telemetry-widget sponsorship-card glass-panel">
+                            <div class="sponsor-tag">PARTNER PLACEMENT</div>
+                            <div class="sponsor-content-core">
+                                <h4>PREMIUM MEMBERSHIP UPGRADE</h4>
+                                <p>Unlock exclusive cryptographic shader presets and multi-threaded server access keys.</p>
+                                <button class="btn-micro-action-neon">UPGRADE SYSTEM</button>
+                            </div>
                         </div>
-                    </div>
+                    </aside>
 
-                    <!-- Action Buttons -->
-                    <div class="action-buttons">
-                        <button class="btn btn-yellow" id="btn-y" aria-label="Yellow Button"></button>
-                        <button class="btn btn-blue" id="btn-b" aria-label="Blue Button"></button>
-                        <button class="btn btn-red" id="btn-a" aria-label="Red Button"></button>
-                        <button class="btn btn-green" id="btn-x" aria-label="Green Button"></button>
-                    </div>
-
-                    <!-- Center Buttons -->
-                    <div class="center-buttons">
-                        <button class="center-btn" id="btn-select">SELECT</button>
-                        <button class="center-btn" id="btn-start">START</button>
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Right Info Panel -->
-        <aside class="info-panel">
-            <div class="info-content">
-                <h3 class="info-title">🎯 CURRENT GAME</h3>
-                <div class="current-game-info">
-                    <p id="current-game-name">No Game Selected</p>
-                    <p id="current-game-score" class="score-display">Score: 0</p>
+            <section id="game-runtime-viewport" class="viewport-section hidden">
+                <div class="runtime-header-controls">
+                    <button id="runtime-exit-to-hub-btn" class="btn-secondary-glass">← TERMINATE ENGINE &amp; EXIT</button>
+                    <h2 id="runtime-active-game-title" class="runtime-title">SYSTEM GAME RUNTIME</h2>
                 </div>
-                <hr class="divider">
-                <h3 class="info-title">📱 STATUS</h3>
-                <div class="status-display">
-                    <p id="game-status" class="status-text">READY</p>
-                    <div class="status-indicator"></div>
+                <div class="runtime-canvas-stage-wrapper">
+                    <canvas id="modular-game-runtime-canvas"></canvas>
                 </div>
-                <hr class="divider">
-                <button class="btn-secondary" id="btn-back-menu">← BACK TO MENU</button>
-                <button class="btn-secondary" id="btn-fullscreen">⛶ FULLSCREEN</button>
-                <button class="btn-secondary" id="btn-settings">⚙ SETTINGS</button>
-            </div>
-        </aside>
-    </main>
+            </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Cyber Arcade | Built with ❤️ for Retro Gaming Enthusiasts</p>
-        <p class="footer-links">
-            <a href="#" onclick="return false;">Privacy</a> | 
-            <a href="#" onclick="return false;">Terms</a> | 
-            <a href="#" onclick="return false;">Contact</a>
-        </p>
-    </footer>
+        </main>
+    </div>
 
-    <!-- Game Scripts -->
-    <script src="script.js"></script>
+    <script src="js/app.js" type="module"></script>
 </body>
 </html>
